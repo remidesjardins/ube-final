@@ -178,7 +178,7 @@ function getDatabase() {
 // Update all database functions to use the new executeQuery helper
 function getRecettes() {
   try {
-    return executeQuery("SELECT * FROM recettes").all();
+    return executeQuery("SELECT * FROM recettes");
   } catch (error) {
     console.error('Error in getRecettes:', error);
     throw error;
@@ -195,10 +195,9 @@ function getRecetteById(id) {
 }
 
 function addRecette(recette, userId) {
-  const db = getConnection();
   try {
     const { titre, ingredients, etapes } = recette;
-    const stmt = db.prepare(
+    const stmt = getConnection().prepare(
       "INSERT INTO recettes (titre, ingredients, etapes, utilisateur_id) VALUES (?, ?, ?, ?)"
     );
     const result = stmt.run(titre, ingredients, etapes, userId);
