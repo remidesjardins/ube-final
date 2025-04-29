@@ -1,0 +1,4 @@
+const linkCompte=document.getElementById("link-compte");if(linkCompte){linkCompte.addEventListener("click",(e)=>{e.preventDefault();const utilisateur=JSON.parse(localStorage.getItem("user"));if(utilisateur&&utilisateur.id_utilisateur){window.location.href="/mes_recommandations.html"}else{window.location.href="/connexion.html"}})}
+const logoutButton=document.getElementById("logout-btn");if(logoutButton){logoutButton.addEventListener("click",()=>{localStorage.removeItem("user");localStorage.setItem("connected","false");window.location.href="/connexion.html"})}
+const utilisateurConnecte=JSON.parse(localStorage.getItem("user"));if(logoutButton){if(utilisateurConnecte&&utilisateurConnecte.id_utilisateur){logoutButton.style.display="inline-block"}else{logoutButton.style.display="none"}
+logoutButton.addEventListener("click",()=>{localStorage.removeItem("user");localStorage.setItem("connected","false");window.location.href="/connexion.html"})}
